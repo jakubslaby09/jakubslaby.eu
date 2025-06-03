@@ -4,5 +4,9 @@ title = 'Jakub Slabý'
 theme = 'chords'
 summaryLength = 10
 
+[markup.tableOfContents]
+  endLevel = 3
+  ordered = true
+
 [params]
   author = 'Jakub Slabý'

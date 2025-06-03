@@ -1,0 +1,6 @@
+</section>
+<section{{
+    if eq "hidden" ( .Get "num" )
+}} hidden-page-number{{ else }}{{
+    with .Get "num"
+}} page-num style="--page-num: {{ . }}"{{ end }}{{ end }}>

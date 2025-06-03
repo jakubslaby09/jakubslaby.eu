@@ -1,5 +1,5 @@
 :root {
-    --background: #fff;
+    --background: #f8f8f8;
     --on-background: #000;
     --primary: #000;
     --on-primary: #fff;
@@ -7,7 +7,10 @@
     --on-secondary: #444;
     background: var(--background);
     color: var(--on-background);
-    font: 1em 'Open Sans', sans-serif;
+    /* inspired by https://modernfontstacks.com/ */
+    font: 1em 'Open Sans', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+    --image-filter: none;
+    --invertable-image-filter: none;
 }
 :root[themed] {
     --background: hsl(calc(var(--hue) - 25), calc(10% * var(--saturation, 1)), 95%);
@@ -24,6 +27,8 @@
     --on-primary: hsl(calc(var(--hue) - 25), calc(20% * var(--saturation, 1)), 25%);
     --secondary: hsl(calc(var(--hue) + 25), calc(15% * var(--saturation, 1)), 40%);
     --on-secondary: hsl(var(--hue), calc(100% * var(--saturation, 1)), 96%);
+    --image-filter: brightness(0.7);
+    --invertable-image-filter: invert(1) hue-rotate(180deg) contrast(calc(14/16));
 }
 body {
     margin: 1rem 1rem 0;
@@ -208,7 +213,114 @@ span[chord]:empty:last-child::before {
     border-radius: 0.5em 0 0 0.5em;
 }
 
-footer {
+body.literature {
+    width: fit-content;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 12pt;
+    font-family: sans-serif;
+    letter-spacing: 0.2pt;
+    scroll-behavior: smooth;
+    background: #fff;
+}
+body.literature:not([paginated]) {
+    width: 595pt;
+}
+body.literature > section {
+    position: relative;
+    height: 842pt;
+    width: 595pt;
+    counter-increment: page;
+    outline-offset: -5pt;
+    /* To prevent margin collapse */
+    overflow: hidden;
+}
+body.literature > section[page-num] {
+    counter-increment: none;
+    counter-reset: page var(--page-num);
+}
+body.literature > section[page-num] {
+    page-break-before: always;
+}
+body.literature > section.title-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 842pt;
+    text-align: center;
+    justify-items: stretch;
+}
+body.literature > section.title-page > h1 {
+    margin-top: 160pt;
+    font-size: 60pt;
+}
+body.literature > section.title-page > footer {
+    margin-top: auto;
+}
+body.literature > section:not([hidden-page-number])::after {
+    content: counter(page);
+    position: absolute;
+    inset: auto 0 0;
+    text-align: center;
+}
+body.literature > :is(h1, h2) {
+    page-break-after: avoid;
+}
+body.literature > :is(p, img, svg, ul, ol, table) {
+    page-break-before: avoid;
+    page-break-inside: avoid;
+}
+body.literature a {
+    color: currentColor;
+}
+body.literature > section.contents a:not(:hover, :focus) {
+    text-decoration: none;
+}
+body.literature table {
+    min-width: 150pt;
+    border-collapse: collapse;
+    vertical-align: middle;
+}
+body.literature table :is(th, td) {
+    border: 1.5pt solid;
+    border-color: var(--on-surface);
+    padding: 2.5pt;
+}
+body.literature table th {
+    font-weight: inherit;
+    padding-inline: 8pt; text-wrap: nowrap;
+    font-style: italic;
+}
+body.literature :is(img, svg) {
+    display: block;
+    max-width: 100%;
+    max-height: 370pt;
+    margin: 10pt auto;
+    filter: var(--image-filter);
+}
+body.literature code {
+    line-height: 1;
+    vertical-align: middle;
+}
+body.literature img[invertable] {
+    filter: var(--invertable-image-filter);
+}
+
+@media not print {
+    body.literature {
+        margin-block: 2rem;
+        background: inherit;
+    }
+    body.literature[paginated] > section {
+        margin: 1rem 0;
+    }
+    body.literature:not([paginated]),
+    body.literature[paginated] > section {
+        border: solid #fff 36pt;
+        background-color: #fff;
+    }
+}
+
+body > footer {
     position: sticky;
     background: var(--background);
     margin-top: 0.5rem;
@@ -221,7 +333,7 @@ footer {
         bottom: 0;
     }
 }
-footer::before {
+body > footer::before {
     content: "";
     position: absolute;
     inset: 0 5rem auto 5rem;
@@ -229,7 +341,7 @@ footer::before {
     background-color: var(--on-background);
     opacity: 0.5;
 }
-footer p {
+body > footer p {
     margin: 0;
 }
 footer a {

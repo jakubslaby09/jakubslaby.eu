@@ -1,0 +1,42 @@
+{{ partial "head.html" . }}
+<style>
+    
+</style>
+<body class="literature"{{ if .HasShortcode "page" }} paginated{{ end }}>
+    <!-- TODO: light switch -->
+    {{ with (index .Params "title-page") }}
+        <section class="title-page" hidden-page-number>
+            {{ with .title }}
+                <h1>{{ . | markdownify }}</h1>
+            {{ end }}
+            {{ with .subtitle }}
+                <h2>{{ . | markdownify }}</h2>
+            {{ end }}
+            {{ if (isset . "right-footer") | or (isset . "left-footer") }}
+            <footer>
+                    {{ with index . "left-footer" }}
+                        <span style="float: left; text-align: left">{{ . | markdownify }}</span>
+                    {{ end }}
+                    {{ with index . "right-footer" }}
+                        <span style="float: right; text-align: right">{{ . | markdownify }}</span>
+                    {{ end }}
+                </footer>
+            {{ end }}
+        </section>
+    {{ end }}
+    {{ if not (eq false (index .Params "contents")) }}
+        <section class="contents" hidden-page-number>
+            <h2 id="obsah">Obsah</h2>
+            {{ .TableOfContents }}
+        </section>
+    {{ end }}
+
+    {{ if .HasShortcode "page" }}
+        <section{{ with (index .Params "page-num-start") }} page-num style="--page-num: {{ . }}"{{ end }}>
+        {{ .Content }}
+        </section>
+    {{ else }}
+        {{ .Content }}
+    {{ end }}
+
+    <!-- {{ partial "footer.html" . }} -->
