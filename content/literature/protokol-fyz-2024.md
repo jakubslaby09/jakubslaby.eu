@@ -1,7 +1,6 @@
 ---
 title: "Voltampérová charakteristika - Protokol"
 date: 2024-10-27T19:28:26+01:00
-draft: true
 # theme:
 #   hue: 50
 #   dark: false
