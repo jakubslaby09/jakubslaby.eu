@@ -8,10 +8,12 @@
 <h2>Stránky</h2>
 <nav>
     {{ range .Pages }}
+    {{ if not .Params.unlisted}}
     <a href="{{ .Permalink }}" class="page">
         <h3>{{ .Title }}</h3>
         <p class="preview">{{ .Summary }}&hellip;</p>
     </a>
+    {{ end }}
     {{ end }}
 </nav>
 {{ partial "footer.html" . }}
