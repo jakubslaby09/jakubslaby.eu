@@ -79,7 +79,7 @@ fury 'cause I will just
 And I don't know why I
 {{< /chords >}}
 
-{{< chords >}
+{{< chords >}}
 And [C]I Say I [am]hate you when I [em]don't
 Push you [D]when you get too [C]close
 It's hard to [am]laugh when I'm the [em]joke
