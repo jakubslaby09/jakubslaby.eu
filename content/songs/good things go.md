@@ -22,7 +22,7 @@ but nothing is inside and it
 for a [G]hundred days[am]
 {{< /chords >}}
 
-{{< chords chorus=true >}
+{{< chords chorus=true >}}
 And [C]I Say I [am]hate you when I [em]don't
 Push you [D]when you get too [C]close
 It's hard to [am]laugh when I'm the [em]joke
@@ -47,7 +47,7 @@ nobody cares. Going no[G]where like falling down[am]stairs while everyone stares
 No one's [em]there when I've asked for for[C]giveness a hundred [G]times[am]
 {{< /chords >}}
 
-{{< chords chorus=true >}
+{{< chords chorus=true >}}
 And [C]I Say I [am]hate you when I [em]don't
 Push you [D]when you get too [C]close
 It's hard to [am]laugh when I'm the [em]joke
