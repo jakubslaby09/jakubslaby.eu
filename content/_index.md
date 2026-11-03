@@ -6,4 +6,3 @@ theme:
   hue: 10
   dark: true
 ---
-

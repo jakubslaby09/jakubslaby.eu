@@ -67,7 +67,9 @@
 </header>
 <nav>
     {{ range .Pages }}
+    {{ if not .Params.unlisted }}
     <a href="{{ .Permalink }}" class="page">{{ .Title }}</a>
+    {{ end }}
     {{ end }}
     <h2>Externí</h2>
     <a href="https://github.com/jakubslaby09">Můj Github</a>
